@@ -56,3 +56,32 @@ Though there is some existing research in the concepts of using LLMs for data sc
 <!-- ------------------------------------------------------------------------- -->
 # Execution plan
 
+## Prompt Engineering
+
+### 1. Get baseline
+- Use ChatGPT to get a baseline for how well it can perform basic analyses without any sort of chaining with langchain or extensive prompt engineering
+- Start with basic analyses containing standard summary statistics
+
+### 2. Test the same baseline on a chosen LLM other than ChatGPT
+- Use the same system prompts and other prompt engineering techniques to perform the same standard analyses on a different LLM to see if there is any improvement.
+- I'm still not using Langchain at this point, just testing what the LLMs can do on their own.
+
+### 3. Introduce Langchain
+- Use Langchain to help the LLM perform math better
+    - User input
+    - Combine with the system prompt and the data
+    - Get response from LLM 
+        - This response should be likely be structured to include instructions, an intermediary representation, or code of the math to be performed, but not the actual math itself
+    - Use an alternative engine (like Wolfram Alpha or python) to perform the math
+    - Format math output and return to the user
+
+### 4. Introduce more complex analyses
+- Visualizations (likely using matplotlib)
+    - To accomplish this, output data can likely be piped back to an LLM to generate the code for visualizations
+- Correlations
+- Grouping
+- Missing values
+- Outliers
+
+## Fine Tuning
+- If analysis results are not accurate enough, fine tuning may be necessary to help the LLM get a better understanding of the types of tasks it is being asked to perform
