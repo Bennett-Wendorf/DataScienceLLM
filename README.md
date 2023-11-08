@@ -1,3 +1,6 @@
+# Archive Notice
+This repository has been archived due to the nature of the work being superseded by OpenAI's Advanced Data Analysis tool built into ChatGPT. That product is far better than I could hope to achieve in the time I had for this project, and so this work is not particularly relevant anymore.
+
 # DataScienceLLM
 Use LLMs for Data Science Analysis
 
