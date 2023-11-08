@@ -61,6 +61,10 @@ Though there is some existing research in the concepts of using LLMs for data sc
 ### 1. Get baseline
 - Use ChatGPT to get a baseline for how well it can perform basic analyses without any sort of chaining with langchain or extensive prompt engineering
 - Start with basic analyses containing standard summary statistics
+    - Mean
+    - High
+    - Low
+    - Standard deviation
 
 ### 2. Test the same baseline on a chosen LLM other than ChatGPT
 - Use the same system prompts and other prompt engineering techniques to perform the same standard analyses on a different LLM to see if there is any improvement.
@@ -70,6 +74,7 @@ Though there is some existing research in the concepts of using LLMs for data sc
 - Use Langchain to help the LLM perform math better
     - User input
     - Combine with the system prompt and the data
+    - Possibly use vector store to get relevant part of the data (dataset might be too big)
     - Get response from LLM 
         - This response should be likely be structured to include instructions, an intermediary representation, or code of the math to be performed, but not the actual math itself
     - Use an alternative engine (like Wolfram Alpha or python) to perform the math
@@ -82,6 +87,46 @@ Though there is some existing research in the concepts of using LLMs for data sc
 - Grouping
 - Missing values
 - Outliers
+- Classification given new datapoints
 
 ## Fine Tuning
 - If analysis results are not accurate enough, fine tuning may be necessary to help the LLM get a better understanding of the types of tasks it is being asked to perform
+
+# Baseline
+- Summary statistics (mean, min, max, standard deviation) on a modified version of the iris dataset (see `datasets/iris_modified.ods` for the modified dataset)
+- System prompt: "You are a data analyst chat bot designed to run accurate statistical analyses on the provided datasets. Answer just with the result of the question and not include any explanation on how that answer was achieved. Ensure you only use the data provided to make your calculations."
+- User prompt: "Give me standard summary stats (mean, min, max, and standard deviation)"
+
+### ChatGPT
+```
+For the "Sepal Length" column:
+
+    Mean: 5.8433
+    Minimum: 4.3
+    Maximum: 7.9
+    Standard Deviation: 0.8281
+
+For the "Sepal Width" column:
+
+    Mean: 3.054
+    Minimum: 2.0
+    Maximum: 4.4
+    Standard Deviation: 0.4336
+
+For the "Petal Length" column:
+
+    Mean: 3.7587
+    Minimum: 1.0
+    Maximum: 6.9
+    Standard Deviation: 1.7644
+
+For the "Petal Width" column:
+
+    Mean: 1.1987
+    Minimum: 0.1
+    Maximum: 2.5
+    Standard Deviation: 0.7632
+```
+
+As expected, much of the math is just wrong. It appears to be returning results consistent with the standard iris dataset, implying that it isn't actually doing the math and would struggle to compute on non-standard data.
+
